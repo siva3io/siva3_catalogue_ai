@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <!-- Category Inherit -->
+        <record model="ir.ui.view" id="product_category_form_view">
+            <field name="name">Product Category</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <group>
+                        <field name="code"/>
+                        <field name="domain"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Category Domain : Action -->
+        <record model="ir.actions.act_window" id="product_category_domain_action">
+            <field name="name">Category Domain</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">category.domain</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="lunch_product_category_domain_menu" name="Category Domain"
+                  parent="stock.menu_stock_config_settings" groups="stock.group_stock_manager"
+                  action="product_category_domain_action" sequence="6"/>
+    </data>
+</odoo>
